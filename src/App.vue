@@ -1,26 +1,29 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+<script setup>
+import { useTheme } from 'vuetify'
+import ScrollToTop from '@core/components/ScrollToTop.vue'
+import initCore from '@core/initCore'
+import {
+  initConfigStore,
+  useConfigStore,
+} from '@core/stores/config'
+import { hexToRgb } from '@layouts/utils'
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+const { global } = useTheme()
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+// ℹ️ Sync current theme with initial loader theme
+initCore()
+initConfigStore()
+
+const configStore = useConfigStore()
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<template>
+  <VLocaleProvider :rtl="configStore.isAppRTL">
+    <!-- ℹ️ This is required to set the background color of active nav link based on currently active global theme's primary -->
+    <VApp :style="`--v-global-theme-primary: ${hexToRgb(global.current.value.colors.primary)}`">
+      <RouterView />
+
+      <ScrollToTop />
+    </VApp>
+  </VLocaleProvider>
+</template>
