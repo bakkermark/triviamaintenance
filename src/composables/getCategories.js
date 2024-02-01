@@ -5,7 +5,6 @@ import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 const getCategories = () => {
     const categories = ref([]);
     const error = ref(null);
-
     const load = async () => {
         try {
             const categoriesCollection = collection(projectFirestore, 'TriviaCategories_nl');
@@ -13,8 +12,10 @@ const getCategories = () => {
             const categorySnapshots = await getDocs(categoriesQuery);
 
             categories.value = categorySnapshots.docs.map(doc => {
-                console.log('Mapping over docs', doc.data());
-                return { ...doc.data(), id: doc.id };
+                let docData = doc.data();
+                let snippet = docData.Description.substring(0, 70) + " ...";
+                console.log('Mapping over docs', docData);
+                return { ...docData, id: doc.id, snippet: snippet };
             });
             console.log('After map:', categories.value);
         } catch (err) {
@@ -22,7 +23,6 @@ const getCategories = () => {
             error.value = err.message;
         }
     };
-
     return { categories, error, load };
 };
 

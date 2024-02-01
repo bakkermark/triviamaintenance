@@ -1,20 +1,22 @@
 <template>
   <div>
     <h3>{{ category.Name }}</h3>
-    <p>{{ category.Description}}</p>  
+    <p>{{ snippet }}</p>
   </div>
 </template>
-
 <script>
 import { computed } from 'vue'
-
 export default {
   props: ['category'],
   setup(props) {
     const snippet = computed(() => {
-      return props.category.Description.substring(0, 100) + ' ...'
+      if (props.category.Description.length > 70) {
+        return props.category.Description.substring(0, 70) + ' ...';
+      } else {
+        return props.category.Description;
+      }
     })
-    return { category: props.category, snippet }
+    return { snippet }
   }
 }
 </script>
