@@ -41,7 +41,12 @@ declare module 'vue-router/auto/routes' {
   export interface RouteNamedMap {
     'root': RouteRecordInfo<'root', '/', Record<never, never>, Record<never, never>>,
     '$error': RouteRecordInfo<'$error', '/:error(.*)', { error: ParamValue<true> }, { error: ParamValue<false> }>,
+    'about': RouteRecordInfo<'about', '/about', Record<never, never>, Record<never, never>>,
+    'categories': RouteRecordInfo<'categories', '/categories', Record<never, never>, Record<never, never>>,
+    'category-add': RouteRecordInfo<'category-add', '/category-add', Record<never, never>, Record<never, never>>,
+    'languages': RouteRecordInfo<'languages', '/languages', Record<never, never>, Record<never, never>>,
     'login': RouteRecordInfo<'login', '/login', Record<never, never>, Record<never, never>>,
+    'questions': RouteRecordInfo<'questions', '/questions', Record<never, never>, Record<never, never>>,
     'second-page': RouteRecordInfo<'second-page', '/second-page', Record<never, never>, Record<never, never>>,
   }
 }

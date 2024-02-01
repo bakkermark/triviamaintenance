@@ -1,0 +1,7 @@
+{
+  "TriviaCategories_nl": [
+    { "Name": "Sport", "id": "1", "Description": "lorem ipsum", "Sorting": "3" },
+    { "Name": "Historie", "id": "2", "Description": "lorem ipsum", "Sorting": "1" },
+    { "Name": "Cultuur", "id": "3", "Description": "lorem ipsum", "Sorting": "1" }
+  ]
+}
