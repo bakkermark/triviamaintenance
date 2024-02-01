@@ -14,12 +14,9 @@ const getCategories = () => {
             categories.value = categorySnapshots.docs.map(doc => {
                 let docData = doc.data();
                 let snippet = docData.Description.substring(0, 70) + " ...";
-                console.log('Mapping over docs', docData);
                 return { ...docData, id: doc.id, snippet: snippet };
             });
-            console.log('After map:', categories.value);
         } catch (err) {
-            console.error('Error during fetching:', err);
             error.value = err.message;
         }
     };
